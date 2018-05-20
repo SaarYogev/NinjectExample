@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('restore') {
       steps {
-        sh 'nuget restore NinjectExample.sln'
+        bat 'nuget restore NinjectExample.sln'
       }
     }
   }
