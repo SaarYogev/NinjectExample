@@ -1,6 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
 using Ninject.Modules;
-using Ninject.Parameters;
 using NinjectExample.Base;
 
 namespace NinjectExample.Modules
@@ -9,8 +8,8 @@ namespace NinjectExample.Modules
     {
         public override void Load()
         {
-            dynamic configuration = ConfigurationProvider.Configuration;
-            Bind<IWeapon>().To<DartsShooter>().WithConstructorArgument(configuration.dartsMagazineSize.As<byte>());
+            var dartsMagazineSize = Configuration.GetValue<byte>("dartsMagazineSize");
+            Bind<IWeapon>().To<DartsShooter>().WithConstructorArgument(Convert.ToByte(dartsMagazineSize));
         }
     }
 }
